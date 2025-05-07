@@ -1,2 +1,744 @@
-pygame.init
-pygame.get_init
+# import necessary libraries
+import pygame
+import sys # smoother exit from game, not always necessary
+# initialize Pygame
+pygame.init()
+# set up display/window
+WIDTH, HEIGHT = 600, 400
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Pac... Box?")
+# set up colors
+WHITE = (255, 255, 255)
+YELLOW = (255, 255, 0)
+BLACK = (0, 0, 0)
+GREEN = (0, 255, 0)
+RED = (255, 0, 0)
+# set up player object
+player_pos = pygame.Rect(280, 180, 30, 30) # rectangular coordinates
+# (left, top, width, height)
+player_speed = 5
+# Set up Wall
+wall1 = pygame.Rect(0, 0, 10, 400)
+wall2 = pygame.Rect(0, 0, 600, 10)
+wall3 = pygame.Rect(590, 0, 10, 400)
+wall4 = pygame.Rect(0, 390, 600, 10)
+wall5 = pygame.Rect(290, 0, 10, 150)
+wall6 = pygame.Rect(290, 250, 10, 150)
+wall7 = pygame.Rect(0, 190, 250, 10)
+wall8 = pygame.Rect(350, 190, 250, 10)
+#set up points counter to end game
+x = 0
+#make bits to collect
+#Square 1
+bit1 = pygame.Rect(60, 20, 5, 5)
+bit2 = pygame.Rect(60, 56, 5, 5)
+bit3 = pygame.Rect(60, 92, 5, 5)
+bit4 = pygame.Rect(60, 128, 5, 5)
+bit5 = pygame.Rect(60, 164, 5, 5)
+
+bit6 = pygame.Rect(105, 20, 5, 5)
+bit7 = pygame.Rect(105, 56, 5, 5)
+bit8 = pygame.Rect(105, 92, 5, 5)
+bit9 = pygame.Rect(105, 128, 5, 5)
+bit10 = pygame.Rect(105,164, 5, 5)
+
+bit11 = pygame.Rect(150, 20, 5, 5)
+bit12 = pygame.Rect(150, 56, 5, 5)
+bit13 = pygame.Rect(150, 92, 5, 5)
+bit14 = pygame.Rect(150, 128, 5, 5)
+bit15 = pygame.Rect(150, 164, 5, 5)
+
+bit16 = pygame.Rect(195, 20, 5, 5)
+bit17 = pygame.Rect(195, 56, 5, 5)
+bit18 = pygame.Rect(195, 92, 5, 5)
+bit19 = pygame.Rect(195, 128, 5, 5)
+bit20 = pygame.Rect(195, 164, 5, 5)
+
+bit21 = pygame.Rect(240, 20, 5, 5)
+bit22 = pygame.Rect(240, 56, 5, 5)
+bit23 = pygame.Rect(240, 92, 5, 5)
+bit24 = pygame.Rect(240, 128, 5, 5)
+bit25 = pygame.Rect(240, 164, 5, 5)
+
+#Square 2
+bit26 = pygame.Rect(60, 220, 5, 5)
+bit27 = pygame.Rect(60, 256, 5, 5)
+bit28 = pygame.Rect(60, 292, 5, 5)
+bit29 = pygame.Rect(60, 328, 5, 5)
+bit30 = pygame.Rect(60, 364, 5, 5)
+
+bit31 = pygame.Rect(105, 220, 5, 5)
+bit32 = pygame.Rect(105, 256, 5, 5)
+bit33 = pygame.Rect(105, 292, 5, 5)
+bit34 = pygame.Rect(105, 328, 5, 5)
+bit35 = pygame.Rect(105, 364, 5, 5)
+
+bit36 = pygame.Rect(150, 220, 5, 5)
+bit37 = pygame.Rect(150, 256, 5, 5)
+bit38 = pygame.Rect(150, 292, 5, 5)
+bit39 = pygame.Rect(150, 328, 5, 5)
+bit40 = pygame.Rect(150, 364, 5, 5)
+
+bit41 = pygame.Rect(195, 220, 5, 5)
+bit42 = pygame.Rect(195, 256, 5, 5)
+bit43 = pygame.Rect(195, 292, 5, 5)
+bit44 = pygame.Rect(195, 328, 5, 5)
+bit45 = pygame.Rect(195, 364, 5, 5)
+
+bit46 = pygame.Rect(240, 220, 5, 5)
+bit47 = pygame.Rect(240, 256, 5, 5)
+bit48 = pygame.Rect(240, 292, 5, 5)
+bit49 = pygame.Rect(240, 328, 5, 5)
+bit50 = pygame.Rect(240, 364, 5, 5)
+
+#Square 3
+bit51 = pygame.Rect(350, 20, 5, 5)
+bit52 = pygame.Rect(350, 56, 5, 5)
+bit53 = pygame.Rect(350, 92, 5, 5)
+bit54 = pygame.Rect(350, 128, 5, 5)
+bit55 = pygame.Rect(350, 164, 5, 5)
+
+bit56 = pygame.Rect(395, 20, 5, 5)
+bit57 = pygame.Rect(395, 56, 5, 5)
+bit58 = pygame.Rect(395, 92, 5, 5)
+bit59 = pygame.Rect(395, 128, 5, 5)
+bit60 = pygame.Rect(395, 164, 5, 5)
+
+bit61 = pygame.Rect(440, 20, 5, 5)
+bit62 = pygame.Rect(440, 56, 5, 5)
+bit63 = pygame.Rect(440, 92, 5, 5)
+bit64 = pygame.Rect(440, 128, 5, 5)
+bit65 = pygame.Rect(440, 164, 5, 5)
+
+bit66 = pygame.Rect(485, 20, 5, 5)
+bit67 = pygame.Rect(485, 56, 5, 5)
+bit68 = pygame.Rect(485, 92, 5, 5)
+bit69 = pygame.Rect(485, 128, 5, 5)
+bit70 = pygame.Rect(485, 164, 5, 5)
+
+bit71 = pygame.Rect(530, 20, 5, 5)
+bit72 = pygame.Rect(530, 56, 5, 5)
+bit73 = pygame.Rect(530, 92, 5, 5)
+bit74 = pygame.Rect(530, 128, 5, 5)
+bit75 = pygame.Rect(530, 164, 5, 5)
+
+#Square 4
+bit76 = pygame.Rect(350, 220, 5, 5)
+bit77 = pygame.Rect(350, 256, 5, 5)
+bit78 = pygame.Rect(350, 292, 5, 5)
+bit79 = pygame.Rect(350, 328, 5, 5)
+bit80 = pygame.Rect(350, 364, 5, 5)
+
+bit81 = pygame.Rect(395, 220, 5, 5)
+bit82 = pygame.Rect(395, 256, 5, 5)
+bit83 = pygame.Rect(395, 292, 5, 5)
+bit84 = pygame.Rect(395, 328, 5, 5)
+bit85 = pygame.Rect(395, 364, 5, 5)
+
+bit86 = pygame.Rect(440, 220, 5, 5)
+bit87 = pygame.Rect(440, 256, 5, 5)
+bit88 = pygame.Rect(440, 292, 5, 5)
+bit89 = pygame.Rect(440, 328, 5, 5)
+bit90 = pygame.Rect(440, 364, 5, 5)
+
+bit91 = pygame.Rect(485, 220, 5, 5)
+bit92 = pygame.Rect(485, 256, 5, 5)
+bit93 = pygame.Rect(485, 292, 5, 5)
+bit94 = pygame.Rect(485, 328, 5, 5)
+bit95 = pygame.Rect(485, 364, 5, 5)
+
+bit96 = pygame.Rect(530, 220, 5, 5)
+bit97 = pygame.Rect(530, 256, 5, 5)
+bit98 = pygame.Rect(530, 292, 5, 5)
+bit99 = pygame.Rect(530, 328, 5, 5)
+bit100 = pygame.Rect(530, 364, 5, 5)
+
+#Death Squares
+death1 = pygame.Rect(175, 100, 15, 15)
+death2 = pygame.Rect(405, 90, 15, 15)
+death3 = pygame.Rect(160, 280, 15, 15)
+death4 = pygame.Rect(415, 300, 15, 15)
+
+#Game Loop
+running = True
+while running:
+    pygame.time.delay(30) #Slow down game
+    screen.fill(WHITE) #Clear Screen
+    #Event Handling, Quitting the game
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # Copy the original position
+    old_position = player_pos.copy()
+    # key press handling; in this example, for moving player rect object
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT]:
+        player_pos.x -= player_speed
+    if keys[pygame.K_RIGHT]:
+        player_pos.x += player_speed
+    if keys[pygame.K_UP]:
+        player_pos.y -= player_speed
+    if keys[pygame.K_DOWN]:
+        player_pos.y += player_speed
+
+    # Collision check: move back if we hit the wall
+    if player_pos.colliderect(wall1):
+        player_pos = old_position # undo movement
+    if player_pos.colliderect(wall2):
+        player_pos = old_position
+    if player_pos.colliderect(wall3):
+        player_pos = old_position
+    if player_pos.colliderect(wall4):
+        player_pos = old_position
+    if player_pos.colliderect(wall5):
+        player_pos = old_position
+    if player_pos.colliderect(wall6):
+        player_pos = old_position
+    if player_pos.colliderect(wall7):
+        player_pos = old_position
+    if player_pos.colliderect(wall8):
+        player_pos = old_position
+        
+    #make Bits pickupable
+    if player_pos.colliderect(bit1):
+        bit1 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit2):
+        bit2 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit3):
+        bit3 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit4):
+        bit4 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit5):
+        bit5 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit6):
+        bit6 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit7):
+        bit7 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit8):
+        bit8 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit9):
+        bit9 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit10):
+        bit10 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit11):
+        bit11 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit12):
+        bit12 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit13):
+        bit13 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit14):
+        bit14 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit15):
+        bit15 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit16):
+        bit16 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit17):
+        bit17 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit18):
+        bit18 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit19):
+        bit19 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit20):
+        bit20 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit21):
+        bit21 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit22):
+        bit22 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit23):
+        bit23 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit24):
+        bit24 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit25):
+        bit25 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit26):
+        bit26 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit27):
+        bit27 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit28):
+        bit28 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit29):
+        bit29 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit30):
+        bit30 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit31):
+        bit31 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit32):
+        bit32 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit33):
+        bit33 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit34):
+        bit34 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit35):
+        bit35 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit36):
+        bit36 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit37):
+        bit37 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit38):
+        bit38 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit39):
+        bit39 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit40):
+        bit40 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit41):
+        bit41 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit42):
+        bit42 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit43):
+        bit43 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit44):
+        bit44 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit45):
+        bit45 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit46):
+        bit46 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit47):
+        bit47 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit48):
+        bit48 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit49):
+        bit49 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit50):
+        bit50 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit51):
+        bit51 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit52):
+        bit52 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit53):
+        bit53 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit54):
+        bit54 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit55):
+        bit55 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit56):
+        bit56 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit57):
+        bit57 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit58):
+        bit58 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit59):
+        bit59 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit60):
+        bit60 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit61):
+        bit61 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit62):
+        bit62 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit63):
+        bit63 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit64):
+        bit64 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit65):
+        bit65 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit66):
+        bit66 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit67):
+        bit67 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit68):
+        bit68 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit69):
+        bit69 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit70):
+        bit70 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit71):
+        bit71 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit72):
+        bit72 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit73):
+        bit73 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit74):
+        bit74 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit75):
+        bit75 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit76):
+        bit76 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit77):
+        bit77 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit78):
+        bit78 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit79):
+        bit79 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit80):
+        bit80 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit81):
+        bit81 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit82):
+        bit82 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit83):
+        bit83 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit84):
+        bit84 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit85):
+        bit85 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit86):
+        bit86 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit87):
+        bit87 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit88):
+        bit88 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit89):
+        bit89 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit90):
+        bit90 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit91):
+        bit91 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit92):
+        bit92 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit93):
+        bit93 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit94):
+        bit94 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit95):
+        bit95 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit96):
+        bit96 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit97):
+        bit97 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit98):
+        bit98 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit99):
+        bit99 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+    if player_pos.colliderect(bit100):
+        bit100 = (-5, 0, 5, 5)
+        x = int(x + 1)
+        print(x)
+
+    #Death square ends game
+    if player_pos.colliderect(death1):
+        print("Oof, you touched a Death Byte. GAME OVER, please reset and try again.")
+        pygame.QUIT()
+    if player_pos.colliderect(death2):
+        print("Oof, you touched a Death Byte. GAME OVER, please reset and try again.")
+        pygame.QUIT()
+    if player_pos.colliderect(death3):
+        print("Oof, you touched a Death Byte. GAME OVER, please reset and try again.")
+        pygame.QUIT()
+    if player_pos.colliderect(death4):
+        print("Oof, you touched a Death Byte. GAME OVER, please reset and try again.")
+        pygame.QUIT()
+        
+    # Draw the player
+    pygame.draw.rect(screen, YELLOW, player_pos)
+    # Draw wall
+    pygame.draw.rect(screen, BLACK, wall1)
+    pygame.draw.rect(screen, BLACK, wall2)
+    pygame.draw.rect(screen, BLACK, wall3)
+    pygame.draw.rect(screen, BLACK, wall4)
+    pygame.draw.rect(screen, BLACK, wall5)
+    pygame.draw.rect(screen, BLACK, wall6)
+    pygame.draw.rect(screen, BLACK, wall7)
+    pygame.draw.rect(screen, BLACK, wall8)
+    # Draw bits
+    pygame.draw.rect(screen, GREEN, bit1)
+    pygame.draw.rect(screen, GREEN, bit2)
+    pygame.draw.rect(screen, GREEN, bit3)
+    pygame.draw.rect(screen, GREEN, bit4)
+    pygame.draw.rect(screen, GREEN, bit5)
+    pygame.draw.rect(screen, GREEN, bit6)
+    pygame.draw.rect(screen, GREEN, bit7)
+    pygame.draw.rect(screen, GREEN, bit8)
+    pygame.draw.rect(screen, GREEN, bit9)
+    pygame.draw.rect(screen, GREEN, bit10)
+    pygame.draw.rect(screen, GREEN, bit11)
+    pygame.draw.rect(screen, GREEN, bit12)
+    pygame.draw.rect(screen, GREEN, bit13)
+    pygame.draw.rect(screen, GREEN, bit14)
+    pygame.draw.rect(screen, GREEN, bit15)
+    pygame.draw.rect(screen, GREEN, bit16)
+    pygame.draw.rect(screen, GREEN, bit17)
+    pygame.draw.rect(screen, GREEN, bit18)
+    pygame.draw.rect(screen, GREEN, bit19)
+    pygame.draw.rect(screen, GREEN, bit20)
+    pygame.draw.rect(screen, GREEN, bit21)
+    pygame.draw.rect(screen, GREEN, bit22)
+    pygame.draw.rect(screen, GREEN, bit23)
+    pygame.draw.rect(screen, GREEN, bit24)
+    pygame.draw.rect(screen, GREEN, bit25)
+    pygame.draw.rect(screen, GREEN, bit26)
+    pygame.draw.rect(screen, GREEN, bit27)
+    pygame.draw.rect(screen, GREEN, bit28)
+    pygame.draw.rect(screen, GREEN, bit29)
+    pygame.draw.rect(screen, GREEN, bit30)
+    pygame.draw.rect(screen, GREEN, bit31)
+    pygame.draw.rect(screen, GREEN, bit32)
+    pygame.draw.rect(screen, GREEN, bit33)
+    pygame.draw.rect(screen, GREEN, bit34)
+    pygame.draw.rect(screen, GREEN, bit35)
+    pygame.draw.rect(screen, GREEN, bit36)
+    pygame.draw.rect(screen, GREEN, bit37)
+    pygame.draw.rect(screen, GREEN, bit38)
+    pygame.draw.rect(screen, GREEN, bit39)
+    pygame.draw.rect(screen, GREEN, bit40)
+    pygame.draw.rect(screen, GREEN, bit41)
+    pygame.draw.rect(screen, GREEN, bit42)
+    pygame.draw.rect(screen, GREEN, bit43)
+    pygame.draw.rect(screen, GREEN, bit44)
+    pygame.draw.rect(screen, GREEN, bit45)
+    pygame.draw.rect(screen, GREEN, bit46)
+    pygame.draw.rect(screen, GREEN, bit47)
+    pygame.draw.rect(screen, GREEN, bit48)
+    pygame.draw.rect(screen, GREEN, bit49)
+    pygame.draw.rect(screen, GREEN, bit50)
+    pygame.draw.rect(screen, GREEN, bit51)
+    pygame.draw.rect(screen, GREEN, bit52)
+    pygame.draw.rect(screen, GREEN, bit53)
+    pygame.draw.rect(screen, GREEN, bit54)
+    pygame.draw.rect(screen, GREEN, bit55)
+    pygame.draw.rect(screen, GREEN, bit56)
+    pygame.draw.rect(screen, GREEN, bit57)
+    pygame.draw.rect(screen, GREEN, bit58)
+    pygame.draw.rect(screen, GREEN, bit59)
+    pygame.draw.rect(screen, GREEN, bit60)
+    pygame.draw.rect(screen, GREEN, bit61)
+    pygame.draw.rect(screen, GREEN, bit62)
+    pygame.draw.rect(screen, GREEN, bit63)
+    pygame.draw.rect(screen, GREEN, bit64)
+    pygame.draw.rect(screen, GREEN, bit65)
+    pygame.draw.rect(screen, GREEN, bit66)
+    pygame.draw.rect(screen, GREEN, bit67)
+    pygame.draw.rect(screen, GREEN, bit68)
+    pygame.draw.rect(screen, GREEN, bit69)
+    pygame.draw.rect(screen, GREEN, bit70)
+    pygame.draw.rect(screen, GREEN, bit71)
+    pygame.draw.rect(screen, GREEN, bit72)
+    pygame.draw.rect(screen, GREEN, bit73)
+    pygame.draw.rect(screen, GREEN, bit74)
+    pygame.draw.rect(screen, GREEN, bit75)
+    pygame.draw.rect(screen, GREEN, bit76)
+    pygame.draw.rect(screen, GREEN, bit77)
+    pygame.draw.rect(screen, GREEN, bit78)
+    pygame.draw.rect(screen, GREEN, bit79)
+    pygame.draw.rect(screen, GREEN, bit80)
+    pygame.draw.rect(screen, GREEN, bit81)
+    pygame.draw.rect(screen, GREEN, bit82)
+    pygame.draw.rect(screen, GREEN, bit83)
+    pygame.draw.rect(screen, GREEN, bit84)
+    pygame.draw.rect(screen, GREEN, bit85)
+    pygame.draw.rect(screen, GREEN, bit86)
+    pygame.draw.rect(screen, GREEN, bit87)
+    pygame.draw.rect(screen, GREEN, bit88)
+    pygame.draw.rect(screen, GREEN, bit89)
+    pygame.draw.rect(screen, GREEN, bit90)
+    pygame.draw.rect(screen, GREEN, bit91)
+    pygame.draw.rect(screen, GREEN, bit92)
+    pygame.draw.rect(screen, GREEN, bit93)
+    pygame.draw.rect(screen, GREEN, bit94)
+    pygame.draw.rect(screen, GREEN, bit95)
+    pygame.draw.rect(screen, GREEN, bit96)
+    pygame.draw.rect(screen, GREEN, bit97)
+    pygame.draw.rect(screen, GREEN, bit98)
+    pygame.draw.rect(screen, GREEN, bit99)
+    pygame.draw.rect(screen, GREEN, bit100)
+
+    #Draw death blocks
+    pygame.draw.rect(screen, RED, death1)
+    pygame.draw.rect(screen, RED, death2)
+    pygame.draw.rect(screen, RED, death3)
+    pygame.draw.rect(screen, RED, death4)
+    
+        # Update display
+    pygame.display.update()
+    #end program
+    while(x == 100):
+        print("Congrats, you got all the bits!")
+        pygame.QUIT()
+        sys.exit() # for smoother exit
